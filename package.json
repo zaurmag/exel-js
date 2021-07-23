@@ -1,0 +1,30 @@
+{
+  "name": "exel-js-cource",
+  "version": "1.0.0",
+  "description": "This is my javascript tutorial",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaurmag/exel-js.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "exel",
+    "js",
+    "practick"
+  ],
+  "author": "Zaur Magomedov <zaurmag411@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zaurmag/exel-js/issues"
+  },
+  "homepage": "https://github.com/zaurmag/exel-js#readme",
+  "devDependencies": {
+    "webpack": "^5.46.0",
+    "webpack-cli": "^4.7.2"
+  }
+}
