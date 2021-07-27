@@ -1,6 +1,3 @@
-import '@/sass/index.sass'
-async function start() {
-  return await Promise.resolve('Server working !')
-}
+import './scss/index.scss'
 
-start().then(console.log)
+console.log('Working!')
