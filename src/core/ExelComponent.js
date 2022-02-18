@@ -9,4 +9,12 @@ export class ExelComponent extends DomListener {
   toHTML() {
     return ''
   }
+
+  init() {
+    this.initDOMListeners()
+  }
+
+  destroy() {
+    this.removeDOMListeners()
+  }
 }

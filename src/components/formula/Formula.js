@@ -5,7 +5,7 @@ export class Formula extends ExelComponent {
 
   constructor($root) {
     super($root, {
-      name: 'formula',
+      name: 'Formula',
       listeners: ['input', 'click']
     })
   }
