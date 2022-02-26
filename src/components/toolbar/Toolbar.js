@@ -5,8 +5,7 @@ export class Toolbar extends ExelComponent {
 
   constructor($root) {
     super($root, {
-      name: 'Toolbar',
-      listeners: ['click']
+      name: 'Toolbar'
     })
   }
 
@@ -36,9 +35,5 @@ export class Toolbar extends ExelComponent {
         <i class="material-icons">format_underlined</i>
       </div>
     `
-  }
-
-  onClick(event) {
-    console.log(event.target)
   }
 }
