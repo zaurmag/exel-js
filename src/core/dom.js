@@ -55,6 +55,29 @@ class Dom {
     return this.$el.getBoundingClientRect()
   }
 
+  id(parse) {
+    if (parse) {
+      const id = this.id().split(':')
+
+      return {
+        col: +id[1],
+        row: +id[0]
+      }
+    }
+
+    return this.data.id
+  }
+
+  focus() {
+    this.$el.focus()
+
+    return this
+  }
+
+  find(selector) {
+    return $(this.$el.querySelector(selector))
+  }
+
   findAll(selector) {
     return this.$el.querySelectorAll(selector)
   }
@@ -63,6 +86,14 @@ class Dom {
     Object
         .keys(style)
         .forEach(key => this.$el.style[key] = style[key])
+  }
+
+  addClass(className) {
+    this.$el.classList.add(className)
+  }
+
+  removeClass(className) {
+    this.$el.classList.remove(className)
   }
 }
 
