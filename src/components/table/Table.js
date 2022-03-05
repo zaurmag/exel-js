@@ -8,10 +8,11 @@ import { $ } from '@core/dom'
 export class Table extends ExelComponent {
   static className = 'excel__table'
 
-  constructor($root) {
+  constructor($root, options) {
     super($root, {
       name: 'Table',
-      listeners: ['mousedown', 'keydown']
+      listeners: ['mousedown', 'keydown', 'input'],
+      ...options
     })
   }
 
@@ -21,9 +22,20 @@ export class Table extends ExelComponent {
 
   init() {
     super.init()
+    this.selectCell(this.$root.find('[data-id="0:0"]'))
 
-    const $cell = this.$root.find('[data-id="0:0"]')
+    this.$on('formula:input', data => {
+      this.selected.current.text(data)
+    })
+
+    this.$on('formula:done', () => {
+      this.selected.current.focus()
+    })
+  }
+
+  selectCell($cell) {
     this.selected.select($cell)
+    this.$emit('table:select', $cell)
   }
 
   onMousedown(event) {
@@ -61,12 +73,15 @@ export class Table extends ExelComponent {
 
     if (keys.includes(key) && !event.shiftKey) {
       event.preventDefault()
-      const $target = this.$root.find(nextSelector(key, id))
-      this.selected.select($target)
+      this.selectCell(this.$root.find(nextSelector(key, id)))
     }
   }
 
   toHTML () {
     return createTable(20)
+  }
+
+  onInput(event) {
+    this.$emit('table:input', $(event.target))
   }
 }
