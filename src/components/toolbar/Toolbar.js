@@ -3,9 +3,10 @@ import {ExelComponent} from '@core/ExelComponent'
 export class Toolbar extends ExelComponent {
   static className = 'excel__toolbar'
 
-  constructor($root) {
+  constructor($root, options) {
     super($root, {
-      name: 'Toolbar'
+      name: 'Toolbar',
+      ...options
     })
   }
 
