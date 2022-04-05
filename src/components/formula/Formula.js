@@ -1,5 +1,5 @@
-import {ExelComponent} from '@core/ExelComponent'
-import {$} from '@core/dom'
+import { ExelComponent } from '@core/ExelComponent'
+import { $ } from '@core/dom'
 
 export class Formula extends ExelComponent {
   static className = 'excel__formula'
@@ -8,6 +8,7 @@ export class Formula extends ExelComponent {
     super($root, {
       name: 'Formula',
       listeners: ['input', 'keydown'],
+      subscribe: ['currentText'],
       ...options
     })
   }
@@ -16,12 +17,9 @@ export class Formula extends ExelComponent {
     super.init()
 
     this.formula = this.$root.find('#formula')
-    this.$on('table:select', $cell => {
-      this.formula.text($cell.text())
-    })
 
-    this.$on('table:input', $cell => {
-      this.formula.text($cell.text())
+    this.$on('table:select', $cell => {
+      this.formula.text($cell.data.value)
     })
   }
 
@@ -36,6 +34,12 @@ export class Formula extends ExelComponent {
       event.preventDefault()
       this.$emit('formula:done')
     }
+
+    this.$dispatch({type: 'Formula'})
+  }
+
+  storeChanged(state) {
+    this.formula.text(state.currentText)
   }
 
   toHTML () {
