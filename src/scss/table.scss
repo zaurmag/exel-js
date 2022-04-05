@@ -78,6 +78,10 @@
       opacity: 1;
       transition: opacity .3s ease;
     }
+
+    &:hover {
+      opacity: 1;
+    }
   }
   
   .col-resize {

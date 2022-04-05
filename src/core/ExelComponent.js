@@ -4,9 +4,12 @@ export class ExelComponent extends DomListener {
   constructor($root, options = {}) {
     super($root, options.listeners)
     this.name = options.name || ''
-    this.prepare()
     this.emitter = options.emitter
     this.unsub = []
+    this.store = options.store
+    this.storeSub = null
+    this.subscribe = options.subscribe || []
+    this.prepare()
   }
 
   // Вставляем контент до инициализации
@@ -23,6 +26,14 @@ export class ExelComponent extends DomListener {
     this.unsub.push(unsub)
   }
 
+  $dispatch(action) {
+    this.store.dispatch(action)
+  }
+
+  $subscribe(fn) {
+    this.storeSub = this.store.subscribe(fn)
+  }
+
   toHTML() {
     return ''
   }
@@ -32,9 +43,16 @@ export class ExelComponent extends DomListener {
     this.initDOMListeners()
   }
 
+  storeChanged() {}
+
+  isWatching(key) {
+    return this.subscribe.includes(key)
+  }
+
   // Уничтожение компонента и слушателей
   destroy() {
     this.removeDOMListeners()
     this.unsub.forEach(unsub => unsub())
+    this.storeSub.unsubscribe()
   }
 }
