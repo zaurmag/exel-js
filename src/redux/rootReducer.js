@@ -40,6 +40,12 @@ export function rootReducer(state, action) {
         title: action.data
       }
 
+    case types.OPEN_DATE:
+      return {
+        ...state,
+        openDate: new Date().toJSON()
+      }
+
     default: return state
   }
 }

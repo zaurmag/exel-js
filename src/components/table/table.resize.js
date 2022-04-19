@@ -46,7 +46,6 @@ export function resize($root, event) {
       resolve({
         value,
         type,
-        // id: type === 'col' ? $parent.data.index : $parent.data.id
         id: $parent.data[type]
       })
 
