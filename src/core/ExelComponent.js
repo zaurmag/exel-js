@@ -7,7 +7,6 @@ export class ExelComponent extends DomListener {
     this.emitter = options.emitter
     this.unsub = []
     this.store = options.store
-    this.storeSub = null
     this.subscribe = options.subscribe || []
     this.prepare()
   }
@@ -30,10 +29,6 @@ export class ExelComponent extends DomListener {
     this.store.dispatch(action)
   }
 
-  $subscribe(fn) {
-    this.storeSub = this.store.subscribe(fn)
-  }
-
   toHTML() {
     return ''
   }
@@ -53,6 +48,5 @@ export class ExelComponent extends DomListener {
   destroy() {
     this.removeDOMListeners()
     this.unsub.forEach(unsub => unsub())
-    this.storeSub.unsubscribe()
   }
 }

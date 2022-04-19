@@ -34,3 +34,9 @@ export function changeTitle(data) {
     data
   }
 }
+
+export function udateDate() {
+  return {
+    type: types.OPEN_DATE
+  }
+}
